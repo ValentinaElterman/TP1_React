@@ -1,9 +1,17 @@
-import Citas from "./citas.jsx"
-import './App.css'
+import Cita from "./Cita";
 
-const Listado  = () => {
+
+const Listado  = ({listado}) => {    
     return (
-        <Citas/>
+       <div class="one-half column">
+            <h2>Administrar Tus Citas</h2>
+            
+            {listado?.map(obj=>(
+                <Cita cita={obj}/>
+            ))}
+            
+            
+          </div>
     )
 }
 
