@@ -1,8 +1,9 @@
 import Listado from "./listado.jsx"
 import Formulario from "./formulario.jsx"
+import React, {useState} from "react";
 
 function App() {
-  const citas = [
+  const [citas, setCitas] = useState([
     {
       mascota: "Nina",
       dueño: "Martin",
@@ -24,15 +25,15 @@ function App() {
       hora: "16:15",
       sintomas: "No está comiendo"
     }
-  ]
+  ]);
 
   return (
     <>
       <h1>Administrador de pacientes</h1>
       <div class="container">
         <div class="row">
-          <Formulario/>
-          <Listado listado={citas}/>
+          <Formulario setCitas={setCitas}/>
+          <Listado listado={citas} setCitas={setCitas}/>
         </div>
       </div>
       
