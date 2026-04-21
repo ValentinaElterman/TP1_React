@@ -1,32 +1,17 @@
 import Listado from "./listado.jsx"
 import Formulario from "./formulario.jsx"
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
+
 
 function App() {
-  const [citas, setCitas] = useState([
-    {
-      mascota: "Nina",
-      dueño: "Martin",
-      fecha: "2021-08-05",
-      hora: "08:20",
-      sintomas: "Le duele la pierna"
-    },
-    {
-      mascota: "Sifon",
-      dueño: "Flecha",
-      fecha: "2023-08-05",
-      hora: "09:24",
-      sintomas: "Duerme mucho"
-    },
-    {
-      mascota: "Floki",
-      dueño: "Ari",
-      fecha: "2023-08-05",
-      hora: "16:15",
-      sintomas: "No está comiendo"
-    }
-  ]);
+  const [citas, setCitas] = useState(() => {
+  const citasGuardadas = localStorage.getItem("citas");
+  return citasGuardadas ? JSON.parse(citasGuardadas) : [];
+});
 
+useEffect(() => {
+  localStorage.setItem("citas", JSON.stringify(citas));
+}, [citas]); // Se ejecuta cada vez que 'citas' se modifica
   return (
     <>
       <h1>Administrador de pacientes</h1>
